@@ -29,8 +29,6 @@ class PokemonController extends AbstractController
             ]);
             $data = json_decode($response->getBody(), true);
 
-            // return new JsonResponse($data);
-
             if (!isset($data['data'])) {
                 throw new Exception('API did not return cards data');
             }
@@ -48,7 +46,7 @@ class PokemonController extends AbstractController
     /**
      * @Route("/details", name="pokemon_details")
      */
-    public function pokemon_details(string $cardId): Response
+    public function pokemonDetails(string $cardId): Response
     {
         $client = new Client();
 

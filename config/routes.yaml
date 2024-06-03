@@ -12,6 +12,6 @@ pokemon_list:
 pokemon_details:
   path: /pokemon/details/{cardId}
   methods: [GET]
-  controller: App\Controller\PokemonController::pokemon_details
+  controller: App\Controller\PokemonController::pokemonDetails
   requirements:
     id: '[a-zA-Z0-9\-_]+'
