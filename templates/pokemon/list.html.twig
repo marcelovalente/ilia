@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        Pokemon Cards
+    </title>
+    {% block stylesheets %}
+        <link href="{{ asset('styles/list.css') }}" rel="stylesheet" />
+        <link href="{{ asset('styles/main.css') }}" rel="stylesheet" />
+    {% endblock %}
+</head>
+<body>
+    <h1>Pokemon Card List</h1>
+
+    <ul>
+        {% for card in cards %}
+            <div class="container">
+                <a href="{{ path('pokemon_details', {'cardId': card.id}) }}">
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <img src="{{ card.images.small }}" alt="{{ card.images.small }}">
+                            </div>
+                            <div class="flip-card-back">
+                                <h2>{{ card.name }}</h2>
+                                <p>ID: {{ card.id }}</p>
+                                <h3>Types</h3>
+                                <ul>
+                                    {% if card.types is defined %}
+                                        {% for type in card.types %}
+                                            {{ type }}
+                                        {% endfor %}
+                                    {% else %}
+                                        No type found
+                                    {% endif %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </ul>
+</body>
+</html>

@@ -3,3 +3,15 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
+
+pokemon_list:
+  path: /pokemon/list
+  methods: [GET]
+  controller: App\Controller\PokemonController::listCards
+
+pokemon_details:
+  path: /pokemon/details/{cardId}
+  methods: [GET]
+  controller: App\Controller\PokemonController::pokemon_details
+  requirements:
+    id: '[a-zA-Z0-9\-_]+'

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pokemon Card Detail</title>
+    {% block stylesheets %}
+        <link href="{{ asset('styles/main.css') }}" rel="stylesheet" />
+        <link href="{{ asset('styles/detail.css') }}" rel="stylesheet" />
+    {% endblock %}
+</head>
+<body>
+    <div id="backImg">
+        <a id="arrowBack" href="{{ path('pokemon_list', {}) }}">
+        </a>
+    </div>
+    <h1>{{ cardDetail.name }}</h1>
+    <div id="container">
+        <div id="detailImg">
+            <img height="400" src="{{ cardDetail.images.large }}" alt="{{ cardDetail.name }} (High Res)">
+        </div>
+        <div id="detailContainer">
+            <p>ID: {{ cardDetail.id }}</p>
+            <p>Types: {{ cardDetail.types | join(', ') }}</p>
+            <p>Resistances: </p>
+            <ul>
+                {% if cardDetail.resistances is defined %}
+                    {% for resistance in cardDetail.resistances %}
+                        <li> {{ resistance.type }} </li>
+                    {% endfor %}
+                {% else %}
+                    <li> No resistance found </li>
+                {% endif %}
+            </ul>
+            <p>Weaknesses: </p>
+            <ul>
+                {% if cardDetail.weaknesses is defined %}
+                    {% for weakness in cardDetail.weaknesses %}
+                        <li> {{ weakness.type }} </li>
+                    {% endfor %}
+                {% else %}
+                    <li> No weaknesses found </li>
+                {% endif %}
+            </ul>
+            <p>Attacks: </p>
+            <ul>
+                {% if cardDetail.attacks is defined %}
+                    {% for attack in cardDetail.attacks %}
+                        <li> {{ attack.text }} </li>
+                    {% endfor %}
+                {% else %}
+                    <li> No attacks found </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
